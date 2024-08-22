@@ -67,8 +67,11 @@ async function main(port) {
   const hostname = '127.0.0.1';
 
   const server = http.createServer((req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust as needed
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.statusCode = 200;
-
+    
     // Create URL object and parse query parameters
     const urlObj = new URL(req.url, `http://${req.headers.host}`);
     const queryParams = urlObj.searchParams;
